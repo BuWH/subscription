@@ -406,13 +406,10 @@ proxy-groups:
       - azure-hk-vmess
       - azure-hk-trojan
 
-  - name: Apple
+  - name: APPLE
     type: select
     proxies:
-      - GIA-E-vmess
-      - GIA-E-trojan
-      - azure-hk-vmess
-      - azure-hk-trojan
+      - PROXY
       - DIRECT
 
 
@@ -541,7 +538,7 @@ rule-providers:
     interval: 86400
 
 
-  rules:
+rules:
   - RULE-SET,applications,DIRECT
   - IP-CIDR,192.168.0.0/8,DIRECT
   - DOMAIN-KEYWORD,zhenguanyu,DIRECT
@@ -550,9 +547,9 @@ rule-providers:
   - DOMAIN,manhuafen.com,PROXY
   - RULE-SET,private,DIRECT
   - RULE-SET,reject,REJECT
-  - RULE-SET,icloud,DIRECT
-  - RULE-SET,apple,DIRECT
-  - RULE-SET,google,DIRECT
+  - RULE-SET,icloud,APPLE
+  - RULE-SET,apple,APPLE
+  - RULE-SET,google,PROXY
   - RULE-SET,proxy,PROXY
   - RULE-SET,direct,DIRECT
   - RULE-SET,lancidr,DIRECT
