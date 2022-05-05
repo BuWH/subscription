@@ -406,6 +406,16 @@ proxy-groups:
       - azure-hk-vmess
       - azure-hk-trojan
 
+  - name: Apple
+    type: select
+    proxies:
+      - GIA-E-vmess
+      - GIA-E-trojan
+      - azure-hk-vmess
+      - azure-hk-trojan
+      - DIRECT
+
+
   # - name: UseProvider
   #   type: select
   #   use:
@@ -474,6 +484,13 @@ rule-providers:
     path: ./ruleset/direct.yaml
     interval: 86400
 
+  private:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt"
+    path: ./ruleset/private.yaml
+    interval: 86400
+
   gfw:
     type: http
     behavior: domain
@@ -516,37 +533,31 @@ rule-providers:
     path: ./ruleset/lancidr.yaml
     interval: 86400
 
-rules:
-  - PROCESS-NAME,v2ray,DIRECT
-  - PROCESS-NAME,Surge%203,DIRECT
-  - PROCESS-NAME,ss-local,DIRECT
-  - PROCESS-NAME,privoxy,DIRECT
-  - PROCESS-NAME,trojan,DIRECT
-  - PROCESS-NAME,trojan-go,DIRECT
-  - PROCESS-NAME,naive,DIRECT
-  - PROCESS-NAME,Thunder,DIRECT
-  - PROCESS-NAME,DownloadService,DIRECT
-  - PROCESS-NAME,qBittorrent,DIRECT
-  - PROCESS-NAME,Transmission,DIRECT
-  - PROCESS-NAME,fdm,DIRECT
-  - PROCESS-NAME,aria2c,DIRECT
-  - PROCESS-NAME,Folx,DIRECT
-  - PROCESS-NAME,NetTransport,DIRECT
-  - PROCESS-NAME,uTorrent,DIRECT
-  - PROCESS-NAME,WebTorrent,DIRECT
+  applications:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt"
+    path: ./ruleset/applications.yaml
+    interval: 86400
+
+
+  rules:
+  - RULE-SET,applications,DIRECT
   - IP-CIDR,192.168.0.0/8,DIRECT
-  - DOMAIN,clash.razord.top,DIRECT
-  - DOMAIN,yacd.haishan.me,DIRECT
   - DOMAIN-KEYWORD,zhenguanyu,DIRECT
   - DOMAIN-KEYWORD,deribit,PROXY
   - DOMAIN-KEYWORD,newrelic,PROXY
   - DOMAIN,manhuafen.com,PROXY
+  - RULE-SET,private,DIRECT
   - RULE-SET,reject,REJECT
-  - RULE-SET,icloud,PROXY
-  - RULE-SET,apple,PROXY
-  - RULE-SET,google,PROXY
+  - RULE-SET,icloud,DIRECT
+  - RULE-SET,apple,DIRECT
+  - RULE-SET,google,DIRECT
   - RULE-SET,proxy,PROXY
   - RULE-SET,direct,DIRECT
+  - RULE-SET,lancidr,DIRECT
+  - RULE-SET,cncidr,DIRECT
   - RULE-SET,telegramcidr,PROXY
+  - GEOIP,LAN,DIRECT
   - GEOIP,CN,DIRECT
   - MATCH,PROXY
