@@ -549,7 +549,7 @@ rules:
   - RULE-SET,reject,REJECT
   - RULE-SET,icloud,APPLE
   - RULE-SET,apple,APPLE
-  - RULE-SET,google,APPLE
+  - RULE-SET,google,PROXY
   - RULE-SET,proxy,PROXY
   - RULE-SET,direct,DIRECT
   - RULE-SET,lancidr,DIRECT
