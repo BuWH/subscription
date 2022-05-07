@@ -1,10 +1,4 @@
-#---------------------------------------------------#
-## 配置文件需要放置在 $HOME/.config/clash/config.yml
-##
-## 如果您不知道如何操作，请参阅 SS-Rule-Snippet 的 Wiki：
-## https://github.com/Hackl0us/SS-Rule-Snippet/wiki/clash(X)
-#---------------------------------------------------#
-
+# Webhook test
 # HTTP 代理端口
 port: 1087
 
