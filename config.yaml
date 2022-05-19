@@ -262,6 +262,15 @@ proxies:
     cipher: auto
     network: tcp
 
+  - name: "azure-jp-vmess"
+    type: vmess
+    server: 20.222.42.193
+    port: 2333
+    uuid: 8dfc206a-6e9c-4ef9-8d21-75854f301f10
+    alterId: 0
+    cipher: auto
+    network: tcp
+
   - name: "GIA-E-vmess"
     type: vmess
     server: buwenhe.com
@@ -397,6 +406,7 @@ proxy-groups:
     proxies:
       - azure-hk-vmess
       - azure-hk-trojan
+      - azure-jp-vmess
       - GIA-E-vmess
       - GIA-E-trojan
 
@@ -410,11 +420,11 @@ proxy-groups:
     type: select
     proxies:
       - azure-hk-vmess
+      - azure-jp-vmess
       - azure-hk-trojan
       - GIA-E-vmess
       - GIA-E-trojan
       - DIRECT
-
 
   # - name: UseProvider
   #   type: select
