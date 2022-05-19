@@ -253,20 +253,20 @@ proxies:
   #   # ws-headers:
   #   #   Host: v2ray.com
 
-  - name: "GIA-E-vmess"
-    type: vmess
-    server: buwenhe.com
-    port: 672
-    uuid: 8236c534-83d1-11ec-8e28-aaaa00167a26
-    alterId: 0
-    cipher: auto
-    network: tcp
-
   - name: "azure-hk-vmess"
     type: vmess
     server: wenhelog.com
     port: 2333
     uuid: 0e03f652-ab70-11ec-9fd3-00224817e660
+    alterId: 0
+    cipher: auto
+    network: tcp
+
+  - name: "GIA-E-vmess"
+    type: vmess
+    server: buwenhe.com
+    port: 672
+    uuid: 8236c534-83d1-11ec-8e28-aaaa00167a26
     alterId: 0
     cipher: auto
     network: tcp
@@ -395,15 +395,24 @@ proxy-groups:
   - name: PROXY
     type: select
     proxies:
-      - GIA-E-vmess
-      - GIA-E-trojan
       - azure-hk-vmess
       - azure-hk-trojan
+      - GIA-E-vmess
+      - GIA-E-trojan
 
   - name: APPLE
     type: select
     proxies:
       - PROXY
+      - DIRECT
+
+  - name: CRYPTO
+    type: select
+    proxies:
+      - azure-hk-vmess
+      - azure-hk-trojan
+      - GIA-E-vmess
+      - GIA-E-trojan
       - DIRECT
 
 
@@ -539,6 +548,7 @@ rules:
   - DOMAIN-KEYWORD,deribit,PROXY
   - DOMAIN-KEYWORD,newrelic,PROXY
   - DOMAIN,manhuafen.com,PROXY
+  - DOMAIN-KEYWORD,binance,CRYPTO
   - RULE-SET,private,DIRECT
   - RULE-SET,reject,REJECT
   - RULE-SET,icloud,APPLE
