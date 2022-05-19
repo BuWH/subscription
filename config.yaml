@@ -549,6 +549,8 @@ rules:
   - DOMAIN-KEYWORD,newrelic,PROXY
   - DOMAIN,manhuafen.com,PROXY
   - DOMAIN-KEYWORD,binance,CRYPTO
+  - DOMAIN-KEYWORD,bnappzh,CRYPTO
+  - DOMAIN-KEYWORD,bntrace,CRYPTO
   - RULE-SET,private,DIRECT
   - RULE-SET,reject,REJECT
   - RULE-SET,icloud,APPLE
