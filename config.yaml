@@ -255,7 +255,7 @@ proxies:
 
   - name: "azure-hk-vmess"
     type: vmess
-    server: wenhelog.com
+    server: 20.24.88.177
     port: 2333
     uuid: 0e03f652-ab70-11ec-9fd3-00224817e660
     alterId: 0
