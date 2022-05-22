@@ -252,33 +252,6 @@ proxies:
   #   # ws-path: /path
   #   # ws-headers:
   #   #   Host: v2ray.com
-
-  - name: "azure-hk-vmess"
-    type: vmess
-    server: 20.24.88.177
-    port: 2333
-    uuid: 0e03f652-ab70-11ec-9fd3-00224817e660
-    alterId: 0
-    cipher: auto
-    network: tcp
-
-  - name: "azure-jp-vmess"
-    type: vmess
-    server: 20.222.42.193
-    port: 2333
-    uuid: 8dfc206a-6e9c-4ef9-8d21-75854f301f10
-    alterId: 0
-    cipher: auto
-    network: tcp
-
-  - name: "GIA-E-vmess"
-    type: vmess
-    server: buwenhe.com
-    port: 672
-    uuid: 8236c534-83d1-11ec-8e28-aaaa00167a26
-    alterId: 0
-    cipher: auto
-    network: tcp
     
 
   # # socks5
@@ -311,32 +284,6 @@ proxies:
   #   # obfs-opts:
   #   # mode: http # 或 tls
   #   # host: bing.com
-
-  # Trojan
-  - name: "GIA-E-trojan"
-    type: trojan
-    server: v2.buwenhe.com
-    port: 443
-    password: 123456aa
-    udp: true
-    sni: v2.buwenhe.com # 服务名称
-    alpn:
-      - h2
-      - http/1.1
-    skip-cert-verify: true
-
-    # Trojan
-  - name: "azure-hk-trojan"
-    type: trojan
-    server: wenhelog.com
-    port: 443
-    password: 123456aa
-    udp: true
-    sni: wenhelog.com # 服务名称
-    alpn:
-      - h2
-      - http/1.1
-    skip-cert-verify: true
 
   # ShadowsocksR
   # 支持的加密方式: SS 中支持的所有流加密方式
