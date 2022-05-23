@@ -494,13 +494,6 @@ rule-providers:
     path: ./ruleset/direct.yaml
     interval: 86400
 
-  private:
-    type: http
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt"
-    path: ./ruleset/private.yaml
-    interval: 86400
-
   gfw:
     type: http
     behavior: domain
@@ -543,15 +536,15 @@ rule-providers:
     path: ./ruleset/lancidr.yaml
     interval: 86400
 
-  applications:
-    type: http
-    behavior: classical
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt"
-    path: ./ruleset/applications.yaml
-    interval: 86400
-
 rules:
-  - RULE-SET,applications,DIRECT
+  - PROCESS-NAME,v2ray,DIRECT
+  - PROCESS-NAME,xray,DIRECT
+  - PROCESS-NAME,naive,DIRECT
+  - PROCESS-NAME,trojan,DIRECT
+  - PROCESS-NAME,trojan-go,DIRECT
+  - PROCESS-NAME,ss-local,DIRECT
+  - PROCESS-NAME,privoxy,DIRECT
+  - PROCESS-NAME,leaf,DIRECT
   - DOMAIN,clash.razord.top,DIRECT
   - DOMAIN,yacd.haishan.me,DIRECT
   - IP-CIDR,192.168.0.0/8,DIRECT
@@ -561,7 +554,6 @@ rules:
   - DOMAIN-KEYWORD,binance,CRYPTO
   - DOMAIN-KEYWORD,bnappzh,CRYPTO
   - DOMAIN-KEYWORD,bntrace,CRYPTO
-  - RULE-SET,private,DIRECT
   - RULE-SET,reject,REJECT
   - RULE-SET,icloud,APPLE
   - RULE-SET,apple,APPLE
