@@ -253,11 +253,27 @@ proxies:
   #   # ws-headers:
   #   #   Host: v2ray.com
 
+  - name: "azure-hk-cloudflare"
+    server: wenhelog.com
+    port: 443
+    type: vmess
+    uuid: 3bfd58ba-54ca-4f3f-820f-2d8c30f4d721
+    alterId: 0
+    cipher: auto
+    tls: true
+    skip-cert-verify: false
+    network: ws
+    ws-opts:
+      path: /DcxepUoj/
+      headers:
+        Host: wenhelog.com
+    udp: true
+
   - name: "azure-hk-vmess"
     type: vmess
-    server: 20.24.88.177
+    server: 20.255.56.84
     port: 2333
-    uuid: 0e03f652-ab70-11ec-9fd3-00224817e660
+    uuid: 641e48d7-26e5-4f21-975a-99ef1e7091c5
     alterId: 0
     cipher: auto
     network: tcp
@@ -404,26 +420,30 @@ proxy-groups:
   - name: PROXY
     type: select
     proxies:
-      - azure-hk-vmess
-      - azure-hk-trojan
-      - azure-jp-vmess
-      - GIA-E-vmess
       - GIA-E-trojan
-
+      - GIA-E-vmess
+      - azure-hk-vmess
+      - azure-hk-cloudflare
+      - azure-jp-vmess
+      
   - name: APPLE
     type: select
     proxies:
-      - PROXY
+      - GIA-E-trojan
+      - GIA-E-vmess
+      - azure-hk-vmess
+      - azure-hk-cloudflare
+      - azure-jp-vmess
       - DIRECT
 
   - name: CRYPTO
     type: select
     proxies:
-      - azure-hk-vmess
-      - azure-jp-vmess
-      - azure-hk-trojan
-      - GIA-E-vmess
       - GIA-E-trojan
+      - GIA-E-vmess
+      - azure-hk-vmess
+      - azure-hk-cloudflare
+      - azure-jp-vmess
       - DIRECT
 
   # - name: UseProvider
