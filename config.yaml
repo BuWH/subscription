@@ -261,13 +261,13 @@ proxies:
     alterId: 0
     cipher: auto
     tls: true
-    skip-cert-verify: false
+    udp: true
+    skip-cert-verify: true
     network: ws
     ws-opts:
       path: /DcxepUoj/
       headers:
         Host: wenhelog.com
-    udp: true
 
   - name: "azure-hk-vmess"
     type: vmess
@@ -420,30 +420,26 @@ proxy-groups:
   - name: PROXY
     type: select
     proxies:
-      - GIA-E-trojan
-      - GIA-E-vmess
       - azure-hk-vmess
       - azure-hk-cloudflare
       - azure-jp-vmess
-      
+      - GIA-E-vmess
+      - GIA-E-trojan
+
   - name: APPLE
     type: select
     proxies:
-      - GIA-E-trojan
-      - GIA-E-vmess
-      - azure-hk-vmess
-      - azure-hk-cloudflare
-      - azure-jp-vmess
+      - PROXY
       - DIRECT
 
   - name: CRYPTO
     type: select
     proxies:
-      - GIA-E-trojan
-      - GIA-E-vmess
       - azure-hk-vmess
-      - azure-hk-cloudflare
       - azure-jp-vmess
+      - azure-hk-cloudflare
+      - GIA-E-vmess
+      - GIA-E-trojan
       - DIRECT
 
   # - name: UseProvider
