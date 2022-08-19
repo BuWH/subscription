@@ -253,7 +253,7 @@ proxies:
   #   # ws-headers:
   #   #   Host: v2ray.com
 
-  - name: "azure-hk-cloudflare"
+  - name: azure-hk-cloudflare
     server: wenhelog.com
     port: 443
     type: vmess
@@ -269,7 +269,7 @@ proxies:
       headers:
         Host: wenhelog.com
 
-  - name: "azure-hk-vmess"
+  - name: azure-hk-vmess
     type: vmess
     server: 20.255.56.84
     port: 2333
@@ -278,7 +278,11 @@ proxies:
     cipher: auto
     network: tcp
 
-  - name: "azure-jp-vmess"
+  - {name: azure-hk-c-vmess, server: 20.6.128.3, port: 2333, type: vmess, uuid: af25a0d9-0e82-4395-a64f-919c5b7d9b58, alterId: 0, cipher: auto, tls: false, skip-cert-verify: false, udp: true}
+
+  - {name: azure-hk-c-grpc, server: wenhe.one, port: 443, type: vmess, uuid: 4115ff1d-0ffb-4713-9f4c-2b7cf8b25407, alterId: 0, cipher: auto, tls: true, skip-cert-verify: false, network: grpc, servername: wenhe.one, grpc-opts: {grpc-service-name: 9T8hGcsZ}, udp: true}
+
+  - name: azure-jp-vmess
     type: vmess
     server: 20.222.42.193
     port: 2333
@@ -287,7 +291,7 @@ proxies:
     cipher: auto
     network: tcp
 
-  - name: "GIA-E-vmess"
+  - name: GIA-E-vmess
     type: vmess
     server: buwenhe.com
     port: 672
@@ -329,26 +333,13 @@ proxies:
   #   # host: bing.com
 
   # Trojan
-  - name: "GIA-E-trojan"
+  - name: GIA-E-trojan
     type: trojan
     server: v2.buwenhe.com
     port: 443
     password: 123456aa
     udp: true
     sni: v2.buwenhe.com # 服务名称
-    alpn:
-      - h2
-      - http/1.1
-    skip-cert-verify: true
-
-    # Trojan
-  - name: "azure-hk-trojan"
-    type: trojan
-    server: wenhelog.com
-    port: 443
-    password: 123456aa
-    udp: true
-    sni: wenhelog.com # 服务名称
     alpn:
       - h2
       - http/1.1
@@ -422,6 +413,8 @@ proxy-groups:
     proxies:
       - azure-hk-vmess
       - azure-hk-cloudflare
+      - azure-hk-c-vmess
+      - azure-hk-c-grpc
       - azure-jp-vmess
       - GIA-E-vmess
       - GIA-E-trojan
@@ -436,8 +429,10 @@ proxy-groups:
     type: select
     proxies:
       - azure-hk-vmess
-      - azure-jp-vmess
       - azure-hk-cloudflare
+      - azure-hk-c-vmess
+      - azure-hk-c-grpc
+      - azure-jp-vmess
       - GIA-E-vmess
       - GIA-E-trojan
       - DIRECT
