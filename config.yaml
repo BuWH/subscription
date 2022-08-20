@@ -192,95 +192,17 @@ dns:
     #   - '+.youtube.com'
 
 proxies:
-  # shadowsocks
-  # 支持加密方式：
-  #   aes-128-gcm aes-192-gcm aes-256-gcm
-  #   aes-128-cfb aes-192-cfb aes-256-cfb
-  #   aes-128-ctr aes-192-ctr aes-256-ctr
-  #   rc4-md5 chacha20 chacha20-ietf xchacha20
-  #   chacha20-ietf-poly1305 xchacha20-ietf-poly1305
-
-  # - name: "ss1"
-  #   type: ss
-  #   server: server
-  #   port: 443
-  #   cipher: chacha20-ietf-poly1305
-  #   password: "password"
-  #   # udp: true
-
-  # - name: "ss2"
-  #   type: ss
-  #   server: server
-  #   port: 443
-  #   cipher: AEAD_CHACHA20_POLY1305
-  #   password: "password"
-  #   plugin: obfs
-  #   plugin-opts:
-  #     mode: tls # 混淆模式，可以选择 http 或 tls
-  #     host: bing.com # 混淆域名，需要和服务器配置保持一致
-
-  # - name: "ss3"
-  #   type: ss
-  #   server: server
-  #   port: 443
-  #   cipher: AEAD_CHACHA20_POLY1305
-  #   password: "password"
-  #   plugin: v2ray-plugin
-  #   plugin-opts:
-  #     mode: websocket # 暂时不支持 QUIC 协议
-  #     # tls: true # wss
-  #     # skip-cert-verify: true
-  #     # host: bing.com
-  #     # path: "/"
-  #     # headers:
-  #     #   custom: value
-
-  # # vmess
-  # # 支持加密方式：auto / aes-128-gcm / chacha20-poly1305 / none
-  # - name: "vmess"
-  #   type: vmess
-  #   server: server
-  #   port: 443
-  #   uuid: uuid
-  #   alterId: 32
-  #   cipher: auto
-  #   # udp: true
-  #   # tls: true
-  #   # skip-cert-verify: true
-  #   # servername: example.com # 优先级高于 wss host
-  #   # network: ws
-  #   # ws-path: /path
-  #   # ws-headers:
-  #   #   Host: v2ray.com
-
-  - name: azure-hk-cloudflare
+  - name: azure-hk-c-2-xtls
+    type: vless
     server: wenhelog.com
     port: 443
-    type: vmess
-    uuid: 3bfd58ba-54ca-4f3f-820f-2d8c30f4d721
-    alterId: 0
-    cipher: auto
-    tls: true
-    udp: true
-    skip-cert-verify: true
-    network: ws
-    ws-opts:
-      path: /DcxepUoj/
-      headers:
-        Host: wenhelog.com
-
-  - name: azure-hk-vmess
-    type: vmess
-    server: 20.255.56.84
-    port: 2333
-    uuid: 641e48d7-26e5-4f21-975a-99ef1e7091c5
-    alterId: 0
-    cipher: auto
-    network: tcp
+    uuid: 7f80ab68-e555-4249-aa35-5bc52327e552
+    flow: xtls-rprx-direct
+    skip-cert-verify: false
 
   - {name: azure-hk-c-vmess, server: 20.6.128.3, port: 2333, type: vmess, uuid: af25a0d9-0e82-4395-a64f-919c5b7d9b58, alterId: 0, cipher: auto, tls: false, skip-cert-verify: false, udp: true}
 
-  - {name: azure-hk-c-grpc, server: wenhe.one, port: 443, type: vmess, uuid: 4115ff1d-0ffb-4713-9f4c-2b7cf8b25407, alterId: 0, cipher: auto, tls: true, skip-cert-verify: false, network: grpc, servername: wenhe.one, grpc-opts: {grpc-service-name: 9T8hGcsZ}, udp: true}
+  - {name: azure-hk-c-grpc, server: wenhe.one, port: 443, type: vmess, uuid: 4115ff1d-0ffb-4713-9f4c-2b7cf8b25407, alterId: 0, cipher: auto, tls: true, skip-cert-verify: false, network: grpc, servername: wenhe.one, grpc-opts: {grpc-service-name: 9T8hGcsZ, multiMode: true, idle_timeout: 13}, udp: true}
 
   - name: azure-jp-vmess
     type: vmess
@@ -291,7 +213,7 @@ proxies:
     cipher: auto
     network: tcp
 
-  - name: GIA-E-vmess
+  - name: BWH-vmess
     type: vmess
     server: buwenhe.com
     port: 672
@@ -299,41 +221,9 @@ proxies:
     alterId: 0
     cipher: auto
     network: tcp
-    
-
-  # # socks5
-  # - name: "socks"
-  #   type: socks5
-  #   server: server
-  #   port: 443
-  #   # username: username
-  #   # password: password
-  #   # tls: true
-  #   # skip-cert-verify: true
-  #   # udp: true
-
-  # # http
-  # - name: "http"
-  #   type: http
-  #   server: server
-  #   port: 443
-  #   # username: username
-  #   # password: password
-  #   # tls: true # https
-  #   # skip-cert-verify: true
-
-  # # snell (注意：暂时不支持 UDP 转发)
-  # - name: "snell"
-  #   type: snell
-  #   server: server
-  #   port: 44046
-  #   psk: yourpsk
-  #   # obfs-opts:
-  #   # mode: http # 或 tls
-  #   # host: bing.com
 
   # Trojan
-  - name: GIA-E-trojan
+  - name: BWH-trojan
     type: trojan
     server: v2.buwenhe.com
     port: 443
@@ -344,26 +234,6 @@ proxies:
       - h2
       - http/1.1
     skip-cert-verify: true
-
-  # ShadowsocksR
-  # 支持的加密方式: SS 中支持的所有流加密方式
-  # 支持的混淆方式:
-  #   plain http_simple http_post
-  #   random_head tls1.2_ticket_auth tls1.2_ticket_fastauth
-  # 支持的协议:
-  #   origin auth_sha1_v4 auth_aes128_md5
-  # #   auth_aes128_sha1 auth_chain_a auth_chain_b
-  # - name: "ssr"
-  #   type: ssr
-  #   server: server
-  #   port: 443
-  #   cipher: chacha20-ietf
-  #   password: "password"
-  #   obfs: tls1.2_ticket_auth
-  #   protocol: auth_sha1_v4
-  #   # obfs-param: domain.tld
-  #   # protocol-param: "#"
-  #   # udp: true
 
 proxy-groups:
   # 代理的转发链, 在 proxies 中不应该包含 relay. 不支持 UDP.
@@ -376,25 +246,31 @@ proxy-groups:
   #     - ss1
   #     - ss2
 
-  # # url-test 可以自动选择与指定 URL 测速后，延迟最短的服务器
-  # - name: "auto"
-  #   type: url-test
-  #   proxies:
-  #     - ss1
-  #     - ss2
-  #     - vmess1
-  #   url: 'http://www.gstatic.com/generate_204'
-  #   interval: 300
+  # url-test 可以自动选择与指定 URL 测速后，延迟最短的服务器
+  - name: Fastest
+    type: url-test
+    proxies:
+      - azure-hk-c-2-xtls
+      - azure-hk-c-vmess
+      - azure-hk-c-grpc
+      - azure-jp-vmess
+      - BWH-vmess
+      - BWH-trojan
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
 
-  # # fallback 可以尽量按照用户书写的服务器顺序，在确保服务器可用的情况下，自动选择服务器
-  # - name: "fallback-auto"
-  #   type: fallback
-  #   proxies:
-  #     - ss1
-  #     - ss2
-  #     - vmess1
-  #   url: 'http://www.gstatic.com/generate_204'
-  #   interval: 300
+  # fallback 可以尽量按照用户书写的服务器顺序，在确保服务器可用的情况下，自动选择服务器
+  - name: Fallback
+    type: fallback
+    proxies:
+      - azure-hk-c-2-xtls
+      - azure-hk-c-grpc
+      - BWH-trojan
+      - azure-hk-c-vmess
+      - azure-jp-vmess
+      - BWH-vmess
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
 
   # # load-balance 可以使相同 eTLD 请求在同一条代理线路上
   # - name: "load-balance"
@@ -411,13 +287,13 @@ proxy-groups:
   - name: PROXY
     type: select
     proxies:
-      - azure-hk-vmess
-      - azure-hk-cloudflare
+      - Fallback
+      - azure-hk-c-2-xtls
       - azure-hk-c-vmess
       - azure-hk-c-grpc
       - azure-jp-vmess
-      - GIA-E-vmess
-      - GIA-E-trojan
+      - BWH-vmess
+      - BWH-trojan
 
   - name: APPLE
     type: select
@@ -428,13 +304,12 @@ proxy-groups:
   - name: CRYPTO
     type: select
     proxies:
-      - azure-hk-vmess
-      - azure-hk-cloudflare
+      - azure-hk-c-2-xtls
       - azure-hk-c-vmess
       - azure-hk-c-grpc
       - azure-jp-vmess
-      - GIA-E-vmess
-      - GIA-E-trojan
+      - BWH-vmess
+      - BWH-trojan
       - DIRECT
 
   # - name: UseProvider
