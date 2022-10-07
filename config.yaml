@@ -213,27 +213,7 @@ proxies:
     cipher: auto
     network: tcp
 
-  - name: BWH-vmess
-    type: vmess
-    server: buwenhe.com
-    port: 672
-    uuid: 8236c534-83d1-11ec-8e28-aaaa00167a26
-    alterId: 0
-    cipher: auto
-    network: tcp
-
-  # Trojan
-  - name: BWH-trojan
-    type: trojan
-    server: v2.buwenhe.com
-    port: 443
-    password: 123456aa
-    udp: true
-    sni: v2.buwenhe.com # 服务名称
-    alpn:
-      - h2
-      - http/1.1
-    skip-cert-verify: true
+  - {name: bwh-us-vmess, server: buwenhe.com, port: 443, type: vmess, uuid: 7c9fac0c-1504-48d5-82e1-624ce946ad15, alterId: 0, cipher: auto, tls: true, skip-cert-verify: true, servername: buwenhe.com, network: ws, ws-opts: {path: /fjbzvws, headers: {Host: buwenhe.com}}, udp: true}
 
 proxy-groups:
   # 代理的转发链, 在 proxies 中不应该包含 relay. 不支持 UDP.
@@ -254,8 +234,7 @@ proxy-groups:
       - azure-hk-c-vmess
       - azure-hk-c-grpc
       - azure-jp-vmess
-      - BWH-vmess
-      - BWH-trojan
+      - bwh-us-vmess
     url: 'http://www.gstatic.com/generate_204'
     interval: 300
 
@@ -265,10 +244,9 @@ proxy-groups:
     proxies:
       - azure-hk-c-2-xtls
       - azure-hk-c-grpc
-      - BWH-trojan
+      - bwh-us-vmess
       - azure-hk-c-vmess
       - azure-jp-vmess
-      - BWH-vmess
     url: 'http://www.gstatic.com/generate_204'
     interval: 300
 
@@ -292,8 +270,7 @@ proxy-groups:
       - azure-hk-c-vmess
       - azure-hk-c-grpc
       - azure-jp-vmess
-      - BWH-vmess
-      - BWH-trojan
+      - bwh-us-vmess
 
   - name: APPLE
     type: select
@@ -308,8 +285,7 @@ proxy-groups:
       - azure-hk-c-vmess
       - azure-hk-c-grpc
       - azure-jp-vmess
-      - BWH-vmess
-      - BWH-trojan
+      - bwh-us-vmess
       - DIRECT
 
   # - name: UseProvider
