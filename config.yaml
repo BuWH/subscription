@@ -200,9 +200,13 @@ proxies:
     flow: xtls-rprx-direct
     skip-cert-verify: false
 
-  - {name: azure-hk-c-vmess, server: 20.6.128.3, port: 2333, type: vmess, uuid: af25a0d9-0e82-4395-a64f-919c5b7d9b58, alterId: 0, cipher: auto, tls: false, skip-cert-verify: false, udp: true}
-
-  - {name: azure-hk-c-grpc, server: wenhe.one, port: 443, type: vmess, uuid: 4115ff1d-0ffb-4713-9f4c-2b7cf8b25407, alterId: 0, cipher: auto, tls: true, skip-cert-verify: false, network: grpc, servername: wenhe.one, grpc-opts: {grpc-service-name: 9T8hGcsZ, multiMode: true, idle_timeout: 13}, udp: true}
+  - name: azure-hk-c-xtls
+    type: vless
+    server: wenhe.one
+    port: 443
+    uuid: cc550e7f-1929-4483-9bc8-7994089ad320
+    flow: xtls-rprx-direct
+    skip-cert-verify: false
 
   - name: azure-jp-vmess
     type: vmess
@@ -231,8 +235,7 @@ proxy-groups:
     type: url-test
     proxies:
       - azure-hk-c-2-xtls
-      - azure-hk-c-vmess
-      - azure-hk-c-grpc
+      - azure-hk-c-xtls
       - azure-jp-vmess
       - bwh-us-vmess
     url: 'http://www.gstatic.com/generate_204'
@@ -243,9 +246,8 @@ proxy-groups:
     type: fallback
     proxies:
       - azure-hk-c-2-xtls
-      - azure-hk-c-grpc
+      - azure-hk-c-xtls
       - bwh-us-vmess
-      - azure-hk-c-vmess
       - azure-jp-vmess
     url: 'http://www.gstatic.com/generate_204'
     interval: 300
@@ -267,8 +269,7 @@ proxy-groups:
     proxies:
       - Fallback
       - azure-hk-c-2-xtls
-      - azure-hk-c-vmess
-      - azure-hk-c-grpc
+      - azure-hk-c-xtls
       - azure-jp-vmess
       - bwh-us-vmess
 
@@ -282,8 +283,7 @@ proxy-groups:
     type: select
     proxies:
       - azure-hk-c-2-xtls
-      - azure-hk-c-vmess
-      - azure-hk-c-grpc
+      - azure-hk-c-xtls
       - azure-jp-vmess
       - bwh-us-vmess
       - DIRECT
@@ -410,9 +410,7 @@ rules:
   - DOMAIN,clash.razord.top,DIRECT
   - DOMAIN,yacd.haishan.me,DIRECT
   - IP-CIDR,192.168.0.0/8,DIRECT
-  - DOMAIN-KEYWORD,deribit,PROXY
-  - DOMAIN-KEYWORD,newrelic,PROXY
-  - DOMAIN,manhuafen.com,PROXY
+  - DOMAIN-KEYWORD,deribit,CRYPTO
   - DOMAIN-KEYWORD,binance,CRYPTO
   - DOMAIN-KEYWORD,bnappzh,CRYPTO
   - DOMAIN-KEYWORD,bntrace,CRYPTO
