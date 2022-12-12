@@ -200,15 +200,16 @@ proxies:
     flow: xtls-rprx-direct
     skip-cert-verify: false
 
-  - name: azure-hk-c-xtls
-    type: vless
+  - name: azure-jp-c
+    type: tuic
     server: wenhe.one
     port: 443
-    uuid: cc550e7f-1929-4483-9bc8-7994089ad320
-    flow: xtls-rprx-direct
-    skip-cert-verify: false
-
-  - {name: azure-jp-ss, server: 20.2.128.76, port: 52333, type: ss, cipher: chacha20-ietf-poly1305, password: uvGOAfNjXGFx, udp: true}
+    token: 'herman'
+    udp: true
+    skip-cert-verify: true
+    sni: ''
+    alpn:
+      - h3
 
   - {name: bwh-us-vmess, server: buwenhe.com, port: 443, type: vmess, uuid: 7c9fac0c-1504-48d5-82e1-624ce946ad15, alterId: 0, cipher: auto, tls: true, skip-cert-verify: true, servername: buwenhe.com, network: ws, ws-opts: {path: /fjbzvws, headers: {Host: buwenhe.com}}, udp: true}
 
@@ -228,8 +229,7 @@ proxy-groups:
     type: url-test
     proxies:
       - azure-hk-c-2-xtls
-      - azure-hk-c-xtls
-      - azure-jp-ss
+      - azure-jp-c
       - bwh-us-vmess
     url: 'http://www.gstatic.com/generate_204'
     interval: 300
@@ -239,9 +239,8 @@ proxy-groups:
     type: fallback
     proxies:
       - azure-hk-c-2-xtls
-      - azure-hk-c-xtls
+      - azure-jp-c
       - bwh-us-vmess
-      - azure-jp-ss
     url: 'http://www.gstatic.com/generate_204'
     interval: 300
 
@@ -262,8 +261,7 @@ proxy-groups:
     proxies:
       - Fallback
       - azure-hk-c-2-xtls
-      - azure-hk-c-xtls
-      - azure-jp-ss
+      - azure-jp-c
       - bwh-us-vmess
 
   - name: APPLE
@@ -276,8 +274,7 @@ proxy-groups:
     type: select
     proxies:
       - azure-hk-c-2-xtls
-      - azure-hk-c-xtls
-      - azure-jp-ss
+      - azure-jp-c
       - bwh-us-vmess
       - DIRECT
 
