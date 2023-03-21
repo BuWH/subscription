@@ -152,6 +152,7 @@ proxy-groups:
   # url-test 可以自动选择与指定 URL 测速后，延迟最短的服务器
   - name: Fastest
     type: url-test
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Rocket.png
     proxies:
       - azure-jp-tls
       - azure-jp-xtls
@@ -161,6 +162,7 @@ proxy-groups:
   # fallback 可以尽量按照用户书写的服务器顺序，在确保服务器可用的情况下，自动选择服务器
   - name: Fallback
     type: fallback
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Filter.png
     proxies:
       - azure-jp-tls
       - azure-jp-xtls
