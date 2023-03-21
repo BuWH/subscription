@@ -107,7 +107,7 @@ dns:
     #   - '+.youtube.com'
 
 proxies:
-  - name: azure-hk-c-tls
+  - name: azure-jp-tls
     type: vless
     server: wenhe.one
     tls: true
@@ -115,15 +115,13 @@ proxies:
     uuid: 33d432c4-6228-4c51-bdbb-bd8e5a3b2b31
     skip-cert-verify: false
 
-  - name: azure-jp-c-xtls
+  - name: azure-jp-xtls
     type: vless
     server: wenhe.one
     port: 443
     uuid: 33d432c4-6228-4c51-bdbb-bd8e5a3b2b31
     flow: xtls-rprx-direct
     skip-cert-verify: false
-
-  - {name: bwh-us-vmess, server: buwenhe.com, port: 443, type: vmess, uuid: 7c9fac0c-1504-48d5-82e1-624ce946ad15, alterId: 0, cipher: auto, tls: true, skip-cert-verify: true, servername: buwenhe.com, network: ws, ws-opts: {path: /fjbzvws, headers: {Host: buwenhe.com}}, udp: true}
 
 proxy-groups:
   # 代理的转发链, 在 proxies 中不应该包含 relay. 不支持 UDP.
@@ -136,24 +134,37 @@ proxy-groups:
   #     - ss1
   #     - ss2
 
+  - name: APPLE
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Apple.png
+    proxies:
+      - PROXY
+      - DIRECT
+
+  - name: CRYPTO
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Want_Want_Letter.png
+    proxies:
+      - azure-jp-tls
+      - azure-jp-xtls
+      - DIRECT
+
   # url-test 可以自动选择与指定 URL 测速后，延迟最短的服务器
   - name: Fastest
     type: url-test
     proxies:
-      - azure-hk-c-tls
-      - azure-jp-c-xtls
-      - bwh-us-vmess
-    url: 'http://www.gstatic.com/generate_204'
+      - azure-jp-tls
+      - azure-jp-xtls
+    url: "http://www.gstatic.com/generate_204"
     interval: 300
 
   # fallback 可以尽量按照用户书写的服务器顺序，在确保服务器可用的情况下，自动选择服务器
   - name: Fallback
     type: fallback
     proxies:
-      - azure-hk-c-tls
-      - azure-jp-c-xtls
-      - bwh-us-vmess
-    url: 'http://www.gstatic.com/generate_204'
+      - azure-jp-tls
+      - azure-jp-xtls
+    url: "http://www.gstatic.com/generate_204"
     interval: 300
 
   # # load-balance 可以使相同 eTLD 请求在同一条代理线路上
@@ -166,29 +177,22 @@ proxy-groups:
   #   url: 'http://www.gstatic.com/generate_204'
   #   interval: 300
 
-  # select 用来允许用户手动选择 代理服务器 或 服务器组
-  # 您也可以使用 RESTful API 去切换服务器，这种方式推荐在 GUI 中使用
-  - name: PROXY
+  - name: OpenAI
     type: select
-    proxies:
-      - Fallback
-      - azure-hk-c-tls
-      - azure-jp-c-xtls
-      - bwh-us-vmess
-
-  - name: APPLE
-    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Server.png
     proxies:
       - PROXY
       - DIRECT
 
-  - name: CRYPTO
+  # select 用来允许用户手动选择 代理服务器 或 服务器组
+  # 您也可以使用 RESTful API 去切换服务器，这种方式推荐在 GUI 中使用
+  - name: PROXY
     type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Proxy.png
     proxies:
-      - azure-hk-c-tls
-      - azure-jp-c-xtls
-      - bwh-us-vmess
-      - DIRECT
+      - Fallback
+      - azure-jp-tls
+      - azure-jp-xtls
 
   # - name: UseProvider
   #   type: select
@@ -208,13 +212,13 @@ proxy-groups:
 #       enable: true
 #       interval: 600
 #       url: http://www.gstatic.com/generate_204
-  # test:
-  #   type: file
-  #   path: /test.yaml
-  #   health-check:
-  #     enable: true
-  #     interval: 36000
-  #     url: http://www.gstatic.com/generate_204
+# test:
+#   type: file
+#   path: /test.yaml
+#   health-check:
+#     enable: true
+#     interval: 36000
+#     url: http://www.gstatic.com/generate_204
 rule-providers:
   reject:
     type: http
@@ -318,6 +322,13 @@ rules:
   - DOMAIN-KEYWORD,binance,CRYPTO
   - DOMAIN-KEYWORD,bnappzh,CRYPTO
   - DOMAIN-KEYWORD,bntrace,CRYPTO
+  - DOMAIN-SUFFIX,openai.com,OpenAI
+  - DOMAIN-SUFFIX,chat.openai.com,OpenAI
+  - DOMAIN-SUFFIX,challenges.cloudflare.com,OpenAI
+  - DOMAIN-SUFFIX,auth0.openai.com,OpenAI
+  - DOMAIN-SUFFIX,platform.openai.com,OpenAI
+  # Add ai.com
+  - DOMAIN-SUFFIX,ai.com
   - RULE-SET,reject,REJECT
   - RULE-SET,icloud,APPLE
   - RULE-SET,apple,APPLE
