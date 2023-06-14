@@ -123,6 +123,16 @@ proxies:
     flow: xtls-rprx-direct
     skip-cert-verify: false
 
+  - name: azure-us-tuic
+    type: tuic
+    server: buwenhe.com
+    port: 63456
+    token: 737094a9
+    skip-cert-verify: true
+    sni: ''
+    alpn:
+      - h3
+
 proxy-groups:
   # 代理的转发链, 在 proxies 中不应该包含 relay. 不支持 UDP.
   # 流量: clash <-> http <-> vmess <-> ss1 <-> ss2 <-> 互联网
@@ -147,25 +157,26 @@ proxy-groups:
     proxies:
       - azure-jp-tls
       - azure-jp-xtls
+      - azure-us-tuic
       - DIRECT
 
   # url-test 可以自动选择与指定 URL 测速后，延迟最短的服务器
   - name: Fastest
     type: url-test
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Rocket.png
     proxies:
       - azure-jp-tls
       - azure-jp-xtls
+      - azure-us-tuic
     url: "http://www.gstatic.com/generate_204"
     interval: 300
 
   # fallback 可以尽量按照用户书写的服务器顺序，在确保服务器可用的情况下，自动选择服务器
   - name: Fallback
     type: fallback
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Filter.png
     proxies:
       - azure-jp-tls
       - azure-jp-xtls
+      - azure-us-tuic
     url: "http://www.gstatic.com/generate_204"
     interval: 300
 
@@ -195,6 +206,7 @@ proxy-groups:
       - Fallback
       - azure-jp-tls
       - azure-jp-xtls
+      - azure-us-tuic
 
   # - name: UseProvider
   #   type: select
