@@ -107,21 +107,26 @@ dns:
     #   - '+.youtube.com'
 
 proxies:
-  - name: azure-jp-tls
+  - name: azure-hk-tls
     type: vless
     server: wenhe.one
     tls: true
     port: 443
-    uuid: 33d432c4-6228-4c51-bdbb-bd8e5a3b2b31
-    skip-cert-verify: false
+    uuid: a91b3356-349f-4816-a352-3b2902edd978
+    network: h2
+    tls: true
+    h2-opts:
+      host:
+        - wenhe.one
+      path: /a91b3356-349f-4816-a352-3b2902edd978
 
-  - name: azure-jp-xtls
-    type: vless
-    server: wenhe.one
-    port: 443
-    uuid: 33d432c4-6228-4c51-bdbb-bd8e5a3b2b31
-    flow: xtls-rprx-direct
-    skip-cert-verify: false
+  # - name: azure-jp-xtls
+  #   type: vless
+  #   server: wenhe.one
+  #   port: 443
+  #   uuid: 33d432c4-6228-4c51-bdbb-bd8e5a3b2b31
+  #   flow: xtls-rprx-direct
+  #   skip-cert-verify: false
 
   - name: azure-us-tuic
     type: tuic
@@ -155,8 +160,8 @@ proxy-groups:
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Want_Want_Letter.png
     proxies:
-      - azure-jp-tls
-      - azure-jp-xtls
+      - azure-hk-tls
+      # - azure-jp-xtls
       - azure-us-tuic
       - DIRECT
 
@@ -164,8 +169,8 @@ proxy-groups:
   - name: Fastest
     type: url-test
     proxies:
-      - azure-jp-tls
-      - azure-jp-xtls
+      - azure-hk-tls
+      # - azure-jp-xtls
       - azure-us-tuic
     url: "http://www.gstatic.com/generate_204"
     interval: 300
@@ -174,8 +179,8 @@ proxy-groups:
   - name: Fallback
     type: fallback
     proxies:
-      - azure-jp-tls
-      - azure-jp-xtls
+      - azure-hk-tls
+      # - azure-jp-xtls
       - azure-us-tuic
     url: "http://www.gstatic.com/generate_204"
     interval: 300
@@ -204,8 +209,8 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Proxy.png
     proxies:
       - Fallback
-      - azure-jp-tls
-      - azure-jp-xtls
+      - azure-hk-tls
+      # - azure-jp-xtls
       - azure-us-tuic
 
   # - name: UseProvider
