@@ -112,12 +112,12 @@ proxies:
     server: wenhe.one
     tls: true
     port: 443
-    uuid: a91b3356-349f-4816-a352-3b2902edd978
+    uuid: f8baec0c-186c-43e9-8d9e-fe3a205b62e7
     network: h2
     h2-opts:
       host:
         - wenhe.one
-      path: /a91b3356-349f-4816-a352-3b2902edd978
+      path: /f8baec0c-186c-43e9-8d9e-fe3a205b62e7
 
   # - name: azure-jp-xtls
   #   type: vless
