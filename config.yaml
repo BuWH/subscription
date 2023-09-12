@@ -114,7 +114,6 @@ proxies:
     port: 443
     uuid: a91b3356-349f-4816-a352-3b2902edd978
     network: h2
-    tls: true
     h2-opts:
       host:
         - wenhe.one
