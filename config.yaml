@@ -119,6 +119,18 @@ proxies:
         - wenhe.one
       path: /f8baec0c-186c-43e9-8d9e-fe3a205b62e7
 
+  - name: azure-jp-tls
+    type: vless
+    server: wenhelog.com
+    tls: true
+    port: 443
+    uuid: bd646c57-d996-467e-8ac4-4bc39c21c259
+    network: h2
+    h2-opts:
+      host:
+        - wenhelog.com
+      path: /bd646c57-d996-467e-8ac4-4bc39c21c259
+
   # - name: azure-jp-xtls
   #   type: vless
   #   server: wenhe.one
@@ -160,7 +172,7 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Want_Want_Letter.png
     proxies:
       - azure-hk-tls
-      # - azure-jp-xtls
+      - azure-jp-tls
       - azure-us-tuic
       - DIRECT
 
@@ -169,7 +181,7 @@ proxy-groups:
     type: url-test
     proxies:
       - azure-hk-tls
-      # - azure-jp-xtls
+      - azure-jp-tls
       - azure-us-tuic
     url: "http://www.gstatic.com/generate_204"
     interval: 300
@@ -179,7 +191,7 @@ proxy-groups:
     type: fallback
     proxies:
       - azure-hk-tls
-      # - azure-jp-xtls
+      - azure-jp-tls
       - azure-us-tuic
     url: "http://www.gstatic.com/generate_204"
     interval: 300
@@ -209,7 +221,7 @@ proxy-groups:
     proxies:
       - Fallback
       - azure-hk-tls
-      # - azure-jp-xtls
+      - azure-jp-tls
       - azure-us-tuic
 
   # - name: UseProvider
