@@ -126,8 +126,7 @@ proxies:
     type: tuic
     uuid: 1a4ce902-8a8f-46b1-a2c7-99d1897ca249
     password: 1a4ce902-8a8f-46b1-a2c7-99d1897ca249
-    skip-cert-verify: true
-    sni: ""
+    sni: ''
     alpn:
       - h3
 
