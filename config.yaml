@@ -1,10 +1,8 @@
 # Webhook test
 # HTTP 代理端口
 port: 1087
-
 # SOCKS5 代理端口
 socks-port: 1080
-
 # Linux 和 macOS 的 redir 透明代理端口 (重定向 TCP 和 TProxy UDP 流量)
 # redir-port: 7892
 
@@ -30,15 +28,12 @@ bind-address: "*"
 # Clash 路由工作模式
 # 规则模式：rule（规则） / global（全局代理）/ direct（全局直连）
 mode: rule
-
 # Clash 默认将日志输出至 STDOUT
 # 设置日志输出级别 (默认级别：silent，即不输出任何内容，以避免因日志内容过大而导致程序内存溢出）。
 # 5 个级别：silent / info / warning / error / debug。级别越高日志输出量越大，越倾向于调试，若需要请自行开启。
 log-level: silent
-
 # clash 的 RESTful API 监听地址
 external-controller: 127.0.0.1:9090
-
 # 存放配置文件的相对路径，或存放网页静态资源的绝对路径
 # Clash core 将会将其部署在 http://{{external-controller}}/ui
 # external-ui: folder
@@ -65,7 +60,6 @@ dns:
   enable: true
   listen: 0.0.0.0:53
   ipv6: true # 当此选项为 false 时, AAAA 请求将返回空
-
   # 以下填写的 DNS 服务器将会被用来解析 DNS 服务的域名
   # 仅填写 DNS 服务器的 IP 地址
   default-nameserver:
@@ -80,7 +74,6 @@ dns:
   # Clash 会使用最先获得的解析记录回复 DNS 请求
   nameserver:
     - https://doh.pub/dns-query
-
   # 当 fallback 参数被配置时, DNS 请求将同时发送至上方 nameserver 列表和下方 fallback 列表中配置的所有 DNS 服务器.
   # 当解析得到的 IP 地址的地理位置不是 CN 时，clash 将会选用 fallback 中 DNS 服务器的解析结果。
   # fallback:
@@ -101,24 +94,23 @@ dns:
     ipcidr:
       - 240.0.0.0/4
       - 0.0.0.0/32
-    # domain:
-    #   - '+.google.com'
-    #   - '+.facebook.com'
-    #   - '+.youtube.com'
-
+      # domain:
+      #   - '+.google.com'
+      #   - '+.facebook.com'
+      #   - '+.youtube.com'
 proxies:
   - name: azure-hk-tls
     type: vless
     server: wenhe.one
-    tls: true
     port: 443
-    uuid: f8baec0c-186c-43e9-8d9e-fe3a205b62e7
+    uuid: f5752ac8-d238-4dba-98ca-255ab0cb47a2
     network: h2
+    skip-cert-verify: true
+    tls: true
     h2-opts:
       host:
         - wenhe.one
-      path: /f8baec0c-186c-43e9-8d9e-fe3a205b62e7
-
+      path: /f5752ac8-d238-4dba-98ca-255ab0cb47a2
   - name: azure-hk-tuic
     server: wenhelog.com
     port: 65347
@@ -126,11 +118,9 @@ proxies:
     type: tuic
     uuid: 1a4ce902-8a8f-46b1-a2c7-99d1897ca249
     password: 1a4ce902-8a8f-46b1-a2c7-99d1897ca249
-    skip-cert-verify: true
-    sni: ""
+    sni: ''
     alpn:
       - h3
-
   # - name: azure-jp-xtls
   #   type: vless
   #   server: wenhe.one
@@ -138,7 +128,6 @@ proxies:
   #   uuid: 33d432c4-6228-4c51-bdbb-bd8e5a3b2b31
   #   flow: xtls-rprx-direct
   #   skip-cert-verify: false
-
   - name: azure-us-tuic
     type: tuic
     server: buwenhe.com
@@ -148,7 +137,6 @@ proxies:
     sni: ""
     alpn:
       - h3
-
 proxy-groups:
   # 代理的转发链, 在 proxies 中不应该包含 relay. 不支持 UDP.
   # 流量: clash <-> http <-> vmess <-> ss1 <-> ss2 <-> 互联网
@@ -159,14 +147,12 @@ proxy-groups:
   #     - vmess
   #     - ss1
   #     - ss2
-
   - name: APPLE
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Apple.png
     proxies:
       - PROXY
       - DIRECT
-
   - name: CRYPTO
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Want_Want_Letter.png
@@ -175,7 +161,6 @@ proxy-groups:
       - azure-hk-tuic
       - azure-us-tuic
       - DIRECT
-
   # url-test 可以自动选择与指定 URL 测速后，延迟最短的服务器
   - name: Fastest
     type: url-test
@@ -185,7 +170,6 @@ proxy-groups:
       - azure-us-tuic
     url: "http://www.gstatic.com/generate_204"
     interval: 300
-
   # fallback 可以尽量按照用户书写的服务器顺序，在确保服务器可用的情况下，自动选择服务器
   - name: Fallback
     type: fallback
@@ -195,7 +179,6 @@ proxy-groups:
       - azure-us-tuic
     url: "http://www.gstatic.com/generate_204"
     interval: 300
-
   # # load-balance 可以使相同 eTLD 请求在同一条代理线路上
   # - name: "load-balance"
   #   type: load-balance
@@ -205,14 +188,12 @@ proxy-groups:
   #     - vmess1
   #   url: 'http://www.gstatic.com/generate_204'
   #   interval: 300
-
   - name: OpenAI
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Server.png
     proxies:
       - PROXY
       - DIRECT
-
   # select 用来允许用户手动选择 代理服务器 或 服务器组
   # 您也可以使用 RESTful API 去切换服务器，这种方式推荐在 GUI 中使用
   - name: PROXY
@@ -223,15 +204,6 @@ proxy-groups:
       - azure-hk-tls
       - azure-hk-tuic
       - azure-us-tuic
-
-  # - name: UseProvider
-  #   type: select
-  #   use:
-  #     - provider1
-  #   proxies:
-  #     - Proxy
-  #     - DIRECT
-
 # proxy-providers:
 #   provider1:
 #     type: http
@@ -256,84 +228,72 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
     path: ./ruleset/reject.yaml
     interval: 86400
-
   icloud:
     type: http
     behavior: domain
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt"
     path: ./ruleset/icloud.yaml
     interval: 86400
-
   apple:
     type: http
     behavior: domain
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt"
     path: ./ruleset/apple.yaml
     interval: 86400
-
   google:
     type: http
     behavior: domain
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt"
     path: ./ruleset/google.yaml
     interval: 86400
-
   proxy:
     type: http
     behavior: domain
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
     path: ./ruleset/proxy.yaml
     interval: 86400
-
   direct:
     type: http
     behavior: domain
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
     path: ./ruleset/direct.yaml
     interval: 86400
-
   gfw:
     type: http
     behavior: domain
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt"
     path: ./ruleset/gfw.yaml
     interval: 86400
-
   greatfire:
     type: http
     behavior: domain
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/greatfire.txt"
     path: ./ruleset/greatfire.yaml
     interval: 86400
-
   tld-not-cn:
     type: http
     behavior: domain
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/tld-not-cn.txt"
     path: ./ruleset/tld-not-cn.yaml
     interval: 86400
-
   telegramcidr:
     type: http
     behavior: ipcidr
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
     path: ./ruleset/telegramcidr.yaml
     interval: 86400
-
   cncidr:
     type: http
     behavior: ipcidr
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
     path: ./ruleset/cncidr.yaml
     interval: 86400
-
   lancidr:
     type: http
     behavior: ipcidr
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
     path: ./ruleset/lancidr.yaml
     interval: 86400
-
 rules:
   - PROCESS-NAME,v2ray,DIRECT
   - PROCESS-NAME,xray,DIRECT

@@ -107,17 +107,18 @@ dns:
     #   - '+.youtube.com'
 
 proxies:
-  - name: azure-hk-tls
-    type: vless
+  - name: azure-hk-trojan
+    type: trojan
     server: wenhe.one
-    tls: true
     port: 443
-    uuid: f8baec0c-186c-43e9-8d9e-fe3a205b62e7
+    password: badfeaa9-602b-44c8-8df6-18b569475456
+    udp: true
     network: h2
+    skip-cert-verify: true
     h2-opts:
       host:
         - wenhe.one
-      path: /f8baec0c-186c-43e9-8d9e-fe3a205b62e7
+      path: /badfeaa9-602b-44c8-8df6-18b569475456
 
   - name: azure-hk-tuic
     server: wenhelog.com
@@ -170,7 +171,7 @@ proxy-groups:
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Want_Want_Letter.png
     proxies:
-      - azure-hk-tls
+      - azure-hk-trojan
       - azure-hk-tuic
       - azure-us-tuic
       - DIRECT
@@ -179,7 +180,7 @@ proxy-groups:
   - name: Fastest
     type: url-test
     proxies:
-      - azure-hk-tls
+      - azure-hk-trojan
       - azure-hk-tuic
       - azure-us-tuic
     url: "http://www.gstatic.com/generate_204"
@@ -189,7 +190,7 @@ proxy-groups:
   - name: Fallback
     type: fallback
     proxies:
-      - azure-hk-tls
+      - azure-hk-trojan
       - azure-hk-tuic
       - azure-us-tuic
     url: "http://www.gstatic.com/generate_204"
@@ -219,7 +220,7 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Proxy.png
     proxies:
       - Fallback
-      - azure-hk-tls
+      - azure-hk-trojan
       - azure-hk-tuic
       - azure-us-tuic
 
