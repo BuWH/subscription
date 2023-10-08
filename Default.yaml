@@ -102,18 +102,15 @@ proxies:
     udp: true
     alpn:
       - http/1.1
-  - name: azure-hk-tls
-    type: vless
+  - name: azure-hk-trojan-2
+    type: trojan
     server: wenhe.one
     port: 443
-    uuid: f5752ac8-d238-4dba-98ca-255ab0cb47a2
-    network: h2
+    password: 70213703-9946-4330-b8bc-7c32ad590cc8
     skip-cert-verify: true
-    tls: true
-    h2-opts:
-      host:
-        - wenhe.one
-      path: /f5752ac8-d238-4dba-98ca-255ab0cb47a2
+    udp: true
+    alpn:
+      - http/1.1
   - name: azure-hk-tuic
     server: wenhelog.com
     port: 65347
@@ -160,7 +157,7 @@ proxy-groups:
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Want_Want_Letter.png
     proxies:
-      - azure-hk-tls
+      - azure-hk-trojan-2
       - azure-hk-trojan
       - azure-hk-tuic
       - azure-us-tuic
@@ -169,7 +166,7 @@ proxy-groups:
   - name: Fastest
     type: url-test
     proxies:
-      - azure-hk-tls
+      - azure-hk-trojan-2
       - azure-hk-trojan
       - azure-hk-tuic
       - azure-us-tuic
@@ -179,7 +176,7 @@ proxy-groups:
   - name: Fallback
     type: fallback
     proxies:
-      - azure-hk-tls
+      - azure-hk-trojan-2
       - azure-hk-trojan
       - azure-hk-tuic
       - azure-us-tuic
@@ -207,7 +204,7 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Proxy.png
     proxies:
       - Fallback
-      - azure-hk-tls
+      - azure-hk-trojan-2
       - azure-hk-trojan
       - azure-hk-tuic
       - azure-us-tuic
