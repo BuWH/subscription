@@ -93,6 +93,15 @@ dns:
       #   - '+.facebook.com'
       #   - '+.youtube.com'
 proxies:
+  - name: azure-hk-trojan
+    type: trojan
+    server: wenhelog.com
+    port: 443
+    password: 31b58cea-0689-457e-9232-ad4261795453
+    skip-cert-verify: true
+    udp: true
+    alpn:
+      - http/1.1
   - name: azure-hk-tls
     type: vless
     server: wenhe.one
@@ -152,6 +161,7 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Want_Want_Letter.png
     proxies:
       - azure-hk-tls
+      - azure-hk-trojan
       - azure-hk-tuic
       - azure-us-tuic
       - DIRECT
@@ -160,6 +170,7 @@ proxy-groups:
     type: url-test
     proxies:
       - azure-hk-tls
+      - azure-hk-trojan
       - azure-hk-tuic
       - azure-us-tuic
     url: "http://www.gstatic.com/generate_204"
@@ -169,6 +180,7 @@ proxy-groups:
     type: fallback
     proxies:
       - azure-hk-tls
+      - azure-hk-trojan
       - azure-hk-tuic
       - azure-us-tuic
     url: "http://www.gstatic.com/generate_204"
@@ -196,6 +208,7 @@ proxy-groups:
     proxies:
       - Fallback
       - azure-hk-tls
+      - azure-hk-trojan
       - azure-hk-tuic
       - azure-us-tuic
 # proxy-providers:
