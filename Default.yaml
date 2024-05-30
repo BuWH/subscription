@@ -325,8 +325,6 @@ rules:
   - DOMAIN-SUFFIX,challenges.cloudflare.com,OpenAI
   - DOMAIN-SUFFIX,auth0.openai.com,OpenAI
   - DOMAIN-SUFFIX,platform.openai.com,OpenAI
-  # Add ai.com
-  - DOMAIN-SUFFIX,ai.com
   - RULE-SET,reject,REJECT
   - RULE-SET,icloud,APPLE
   - RULE-SET,apple,APPLE
