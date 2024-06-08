@@ -111,34 +111,16 @@ proxies:
     udp: true
     alpn:
       - http/1.1
-  # - name: azure-hk-tuic
-  #   server: wenhelog.com
-  #   port: 65347
-  #   version: 5
-  #   type: tuic
-  #   uuid: 1a4ce902-8a8f-46b1-a2c7-99d1897ca249
-  #   password: 1a4ce902-8a8f-46b1-a2c7-99d1897ca249
-  #   sni: ''
-  #   alpn:
-  #     - h3
-  # - name: azure-jp-xtls
-  #   type: vless
-  #   server: wenhe.one
-  #   port: 443
-  #   uuid: 33d432c4-6228-4c51-bdbb-bd8e5a3b2b31
-  #   flow: xtls-rprx-direct
-  #   skip-cert-verify: false
-  # - name: azure-us-tuic
-  #   type: tuic
-  #   server: buwenhe.com
-  #   port: 443
-  #   version: 5
-  #   uuid: 3829b407-cada-4b9e-88e3-051ae53320ac # for v5
-  #   password: 3829b407-cada-4b9e-88e3-051ae53320ac # for v5
-  #   skip-cert-verify: true
-  #   sni: ''
-  #   alpn:
-  #     - h3
+  - name: azure-us-trojan
+    type: trojan
+    server: buwenhe.com
+    port: 443
+    password: 21a7a119-5e89-487b-b813-bf15152b3d19
+    skip-cert-verify: true
+    udp: true
+    alpn:
+      - http/1.1
+
 proxy-groups:
   # 代理的转发链, 在 proxies 中不应该包含 relay. 不支持 UDP.
   # 流量: clash <-> http <-> vmess <-> ss1 <-> ss2 <-> 互联网
@@ -161,6 +143,7 @@ proxy-groups:
     proxies:
       - azure-hk-trojan-2
       - azure-hk-trojan
+      - azure-us-trojan
       - DIRECT
   # url-test 可以自动选择与指定 URL 测速后，延迟最短的服务器
   - name: Fastest
@@ -168,6 +151,7 @@ proxy-groups:
     proxies:
       - azure-hk-trojan-2
       - azure-hk-trojan
+      - azure-us-trojan
     url: "http://www.gstatic.com/generate_204"
     interval: 300
   # fallback 可以尽量按照用户书写的服务器顺序，在确保服务器可用的情况下，自动选择服务器
@@ -176,6 +160,7 @@ proxy-groups:
     proxies:
       - azure-hk-trojan-2
       - azure-hk-trojan
+      - azure-us-trojan
     url: "http://www.gstatic.com/generate_204"
     interval: 300
   # # load-balance 可以使相同 eTLD 请求在同一条代理线路上
@@ -194,6 +179,7 @@ proxy-groups:
       - PROXY
       - azure-hk-trojan-2
       - azure-hk-trojan
+      - azure-us-trojan
       - DIRECT
   # select 用来允许用户手动选择 代理服务器 或 服务器组
   # 您也可以使用 RESTful API 去切换服务器，这种方式推荐在 GUI 中使用
@@ -204,6 +190,7 @@ proxy-groups:
       - Fallback
       - azure-hk-trojan-2
       - azure-hk-trojan
+      - azure-us-trojan
 # proxy-providers:
 #   provider1:
 #     type: http
@@ -313,6 +300,7 @@ rules:
   - DOMAIN-KEYWORD,bnappzh,CRYPTO
   - DOMAIN-KEYWORD,bntrace,CRYPTO
   - DOMAIN-SUFFIX,openai.com,OpenAI
+  - DOMAIN-SUFFIX,chatgpt.com,OpenAI
   - DOMAIN-SUFFIX,chat.openai.com,OpenAI
   - DOMAIN-SUFFIX,challenges.cloudflare.com,OpenAI
   - DOMAIN-SUFFIX,auth0.openai.com,OpenAI
