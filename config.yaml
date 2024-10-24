@@ -144,6 +144,7 @@ proxy-groups:
       - azure-hk-trojan-2
       - azure-hk-trojan
       - azure-us-trojan
+      - TAG-select
       - DIRECT
   # url-test 可以自动选择与指定 URL 测速后，延迟最短的服务器
   - name: Fastest
@@ -177,10 +178,10 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Server.png
     proxies:
       - PROXY
-      - TAG-select
       - azure-hk-trojan-2
       - azure-hk-trojan
       - azure-us-trojan
+      - TAG-select
       - DIRECT
   # select 用来允许用户手动选择 代理服务器 或 服务器组
   # 您也可以使用 RESTful API 去切换服务器，这种方式推荐在 GUI 中使用
@@ -192,6 +193,7 @@ proxy-groups:
       - azure-hk-trojan-2
       - azure-hk-trojan
       - azure-us-trojan
+      - TAG-select
   - name: TAG-select
     type: select
     use:
