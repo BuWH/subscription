@@ -177,6 +177,7 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Server.png
     proxies:
       - PROXY
+      - TAG-select
       - azure-hk-trojan-2
       - azure-hk-trojan
       - azure-us-trojan
@@ -191,16 +192,15 @@ proxy-groups:
       - azure-hk-trojan-2
       - azure-hk-trojan
       - azure-us-trojan
-# proxy-providers:
-#   provider1:
-#     type: http
-#     url: "url"
-#     interval: 3600
-#     path: ./provider1.yaml
-#     health-check:
-#       enable: true
-#       interval: 600
-#       url: http://www.gstatic.com/generate_204
+  - name: TAG-select
+    type: select
+    use:
+      - TAG
+proxy-providers:
+  TAG:
+    url: https://chomthong.central-world.org/api/v1/client/subscribe?token=ff9d01f639de98c709269af5b6b11713
+    interval: 3600
+    filter: '家宽'
 # test:
 #   type: file
 #   path: /test.yaml
