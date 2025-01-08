@@ -120,6 +120,17 @@ proxies:
     udp: true
     alpn:
       - http/1.1
+  - name: azure-sg-tuic
+    server: hermanwen.xyz
+    port: 51296
+    type: tuic
+    version: 5
+    uuid: 7c6695a0-f18e-4afb-ba78-4f7c90a54206
+    password: 7c6695a0-f18e-4afb-ba78-4f7c90a54206
+    sni: hermanwen.xyz
+    skip-cert-verify: false
+    alpn:
+      - h3
 
 proxy-groups:
   # 代理的转发链, 在 proxies 中不应该包含 relay. 不支持 UDP.
@@ -144,12 +155,14 @@ proxy-groups:
       - azure-hk-trojan-2
       - azure-hk-trojan
       - azure-us-trojan
+      - azure-sg-tuic
       - TAG-select
       - DIRECT
   # url-test 可以自动选择与指定 URL 测速后，延迟最短的服务器
   - name: Fastest
     type: url-test
     proxies:
+      - azure-sg-tuic
       - azure-hk-trojan-2
       - azure-hk-trojan
       - azure-us-trojan
@@ -159,6 +172,7 @@ proxy-groups:
   - name: Fallback
     type: fallback
     proxies:
+      - azure-sg-tuic
       - azure-hk-trojan-2
       - azure-hk-trojan
       - azure-us-trojan
@@ -178,6 +192,7 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Server.png
     proxies:
       - PROXY
+      - azure-sg-tuic
       - azure-hk-trojan-2
       - azure-hk-trojan
       - azure-us-trojan
@@ -190,6 +205,7 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Proxy.png
     proxies:
       - Fallback
+      - azure-sg-tuic
       - azure-hk-trojan-2
       - azure-hk-trojan
       - azure-us-trojan
@@ -294,7 +310,7 @@ rule-providers:
     type: http
     behavior: domain
     format: text
-    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Gemini/Gemini.yaml/_end_/Gemini.list?type=rule-set&target=stash-rule-set&del=true"
+    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Surge/Gemini/Gemini.list/_end_/Gemini.list?type=rule-set&target=stash-domain-set&del=true"
     path: ./ruleset/gemini.yaml
     interval: 86400
 rules:
