@@ -290,6 +290,13 @@ rule-providers:
     url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/OpenAI/OpenAI.list/_end_/OpenAI.list?type=rule-set&target=stash-domain-set&del=true"
     path: ./ruleset/openai.yaml
     interval: 86400
+  gemini:
+    type: http
+    behavior: domain
+    format: text
+    url: "http://script.hub/file/_start_/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Gemini/Gemini.yaml/_end_/Gemini.list?type=rule-set&target=stash-rule-set&del=true"
+    path: ./ruleset/gemini.yaml
+    interval: 86400
 rules:
   - PROCESS-NAME,v2ray,DIRECT
   - PROCESS-NAME,xray,DIRECT
@@ -323,6 +330,7 @@ rules:
   - DOMAIN-KEYWORD,bntrace,CRYPTO
   - RULE-SET,reject,REJECT
   - RULE-SET,openai,AI_SERVICE
+  - RULE-SET,gemini,AI_SERVICE
   - RULE-SET,icloud,APPLE
   - RULE-SET,apple,APPLE
   - RULE-SET,google,PROXY
