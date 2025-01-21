@@ -93,16 +93,14 @@ dns:
       #   - '+.facebook.com'
       #   - '+.youtube.com'
 proxies:
+  - name: azure-sg-hysteria                           
+    type: hysteria2                                      
+    server: wenhelog.com                               
+    port: 36897                                
+    auth: 429db6aa-6eb8-4433-a0a6-21c28d0393c7                                                      
+    skip-cert-verify: false
+    fast-open: true
   - name: azure-hk-trojan
-    type: trojan
-    server: wenhelog.com
-    port: 443
-    password: 31b58cea-0689-457e-9232-ad4261795453
-    skip-cert-verify: true
-    udp: true
-    alpn:
-      - http/1.1
-  - name: azure-hk-trojan-2
     type: trojan
     server: wenhe.one
     port: 443
@@ -152,10 +150,10 @@ proxy-groups:
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Want_Want_Letter.png
     proxies:
-      - azure-hk-trojan-2
+      - azure-sg-tuic
+      - azure-sg-hysteria
       - azure-hk-trojan
       - azure-us-trojan
-      - azure-sg-tuic
       - TAG-select
       - DIRECT
   # url-test 可以自动选择与指定 URL 测速后，延迟最短的服务器
@@ -163,7 +161,7 @@ proxy-groups:
     type: url-test
     proxies:
       - azure-sg-tuic
-      - azure-hk-trojan-2
+      - azure-sg-hysteria
       - azure-hk-trojan
       - azure-us-trojan
     url: "http://www.gstatic.com/generate_204"
@@ -173,7 +171,7 @@ proxy-groups:
     type: fallback
     proxies:
       - azure-sg-tuic
-      - azure-hk-trojan-2
+      - azure-sg-hysteria
       - azure-hk-trojan
       - azure-us-trojan
     url: "http://www.gstatic.com/generate_204"
@@ -193,7 +191,7 @@ proxy-groups:
     proxies:
       - PROXY
       - azure-sg-tuic
-      - azure-hk-trojan-2
+      - azure-sg-hysteria
       - azure-hk-trojan
       - azure-us-trojan
       - TAG-select
@@ -206,7 +204,7 @@ proxy-groups:
     proxies:
       - Fallback
       - azure-sg-tuic
-      - azure-hk-trojan-2
+      - azure-sg-hysteria
       - azure-hk-trojan
       - azure-us-trojan
       - TAG-select
