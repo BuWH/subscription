@@ -93,17 +93,6 @@ dns:
       #   - '+.facebook.com'
       #   - '+.youtube.com'
 proxies:
-  - name: azure-sg-backup                           
-    server: wenhelog.com
-    port: 44581
-    type: tuic
-    version: 5
-    uuid: 429db6aa-6eb8-4433-a0a6-21c28d0393c7
-    password: 429db6aa-6eb8-4433-a0a6-21c28d0393c7
-    sni: wenhelog.com
-    skip-cert-verify: false
-    alpn:
-      - h3
   - name: azure-hk-trojan
     type: trojan
     server: wenhe.one
@@ -133,6 +122,17 @@ proxies:
     skip-cert-verify: false
     alpn:
       - h3
+  - name: azure-sg-backup-tuic
+    server: wenhelog.com
+    port: 23333
+    type: tuic
+    version: 5
+    uuid: ce1d92ea-06dc-4135-9c2a-c40804b7c35d
+    password: ce1d92ea-06dc-4135-9c2a-c40804b7c35d
+    sni: wenhelog.com
+    skip-cert-verify: false
+    alpn:
+      - h3
 
 proxy-groups:
   # 代理的转发链, 在 proxies 中不应该包含 relay. 不支持 UDP.
@@ -155,7 +155,7 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Want_Want_Letter.png
     proxies:
       - azure-sg-tuic
-      - azure-sg-backup
+      - azure-sg-backup-tuic
       - azure-hk-trojan
       - azure-us-trojan
       - TAG-select
@@ -165,7 +165,7 @@ proxy-groups:
     type: url-test
     proxies:
       - azure-sg-tuic
-      - azure-sg-backup
+      - azure-sg-backup-tuic
       - azure-hk-trojan
       - azure-us-trojan
     url: "http://www.gstatic.com/generate_204"
@@ -175,7 +175,7 @@ proxy-groups:
     type: fallback
     proxies:
       - azure-sg-tuic
-      - azure-sg-backup
+      - azure-sg-backup-tuic
       - azure-hk-trojan
       - azure-us-trojan
     url: "http://www.gstatic.com/generate_204"
@@ -195,7 +195,7 @@ proxy-groups:
     proxies:
       - PROXY
       - azure-sg-tuic
-      - azure-sg-backup
+      - azure-sg-backup-tuic
       - azure-hk-trojan
       - azure-us-trojan
       - TAG-select
@@ -208,7 +208,7 @@ proxy-groups:
     proxies:
       - Fallback
       - azure-sg-tuic
-      - azure-sg-backup
+      - azure-sg-backup-tuic
       - azure-hk-trojan
       - azure-us-trojan
       - TAG-select
